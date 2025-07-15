@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Raffay Token Checker</title>
+  <style>
+    body {
+      background: url('/background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: monospace;
+      color: white;
+      padding: 2em;
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌐 RAFFAY TOKEN CHECKER</h1>
+  <input id="token" placeholder="Enter Facebook Token">
+  <button onclick="checkToken()">Check Token</button>
+  <pre id="result"></pre>
+
+  <script>
+    async function checkToken() {
+      const token = document.getElementById('token').value;
+      const res = await fetch(`/api/check_token?token=${token}`);
+      const data = await res.json();
+      document.getElementById('result').textContent = JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>
